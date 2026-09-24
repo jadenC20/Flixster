@@ -34,7 +34,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img width="837" height="988" alt="Flixster++ Demo" src="https://github.com/user-attachments/assets/374ca288-4a28-4c32-8b09-a3398b8bcfcf" />
+<img width="861" height="988" alt="Flixster++ Demo 2" src="https://github.com/user-attachments/assets/8e37f7df-c80d-427c-9f90-3ba050a7f0aa" />
 
 
 
