@@ -1,6 +1,7 @@
 package com.example.flixster
 
 import org.json.JSONArray
+import java.io.Serializable
 
 data class Movie(
     val movieId: Int,
@@ -9,7 +10,9 @@ data class Movie(
     val posterPath: String,
     val backdropPath: String,
     val voteAverage: Double,
-) {
+    val releaseDate: String,
+    val voteCount: Int,
+) : Serializable {
     val posterImageUrl: String
         get() = "https://image.tmdb.org/t/p/w500$posterPath"
 
@@ -29,6 +32,8 @@ data class Movie(
                         posterPath = movieJson.optString("poster_path", ""),
                         backdropPath = movieJson.optString("backdrop_path", ""),
                         voteAverage = movieJson.optDouble("vote_average", 0.0),
+                        releaseDate = movieJson.optString("release_date", "N/A"),
+                        voteCount = movieJson.optInt("vote_count", 0),
                     )
                 )
             }

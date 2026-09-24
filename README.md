@@ -1,8 +1,8 @@
-# Android Project 3 - Flixster
+# Android Project 4 - Flixster++
 
 Submitted by: **Jaden**
 
-**Flixster** is a movie browsing app that allows users to browse movies currently playing in theaters.
+**Flixster++** is a movie browsing app that allows users to browse popular and top-rated movies currently playing in theaters, view movie details, ratings, and release dates.
 
 Time spent: **3** hours spent in total
 
@@ -10,22 +10,25 @@ Time spent: **3** hours spent in total
 
 The following **required** functionality is completed:
 
-- [x] **Make a request to [The Movie Database API's `now_playing`](https://developers.themoviedb.org/3/movies/get-now-playing) endpoint to get a list of current movies**
-- [x] **Parse through JSON data and implement a RecyclerView to display all movies**
-- [x] **Use Glide to load and display movie poster images**
+- [x] **Choose any endpoint on The MovieDB API except `now_playing`**
+  - Chosen Endpoint: `https://api.themoviedb.org/3/movie/popular` (Popular Movies)
+- [x] **Make a request to your chosen endpoint and implement a RecyclerView to display all entries**
+- [x] **Use Glide to load and display at least one image per entry**
+- [x] **Click on an entry to view specific details about that entry using Intents**
 
 The following **optional** features are implemented:
 
-- [x] Improve and customize the user interface through styling and coloring
-- [x] Implement orientation responsivity
-  - App should neatly arrange data in both landscape and portrait mode
-- [x] Implement Glide to display placeholder graphics during loading
-  - Note: this feature is difficult to capture in a GIF without throttling internet speeds.  Instead, include an additional screencap of your Glide code implementing the feature.  (<10 lines of code)
+- [x] **Add another API call and RecyclerView that lets the user interact with different data.** 
+  - Added filter toggle buttons for both Popular (`/movie/popular`) and Top Rated (`/movie/top_rated`) TMDB API endpoints.
+- [x] **Add rounded corners to the images using the Glide transformations**
+  - Applied `RoundedCorners` transformation with `CenterCrop` via Glide for all movie posters and backdrop images.
+- [x] **Implement a shared element transition when user clicks into the details of a movie**
 
 The following **additional** features are implemented:
 
-- [x] Material CardView UI styling with dark theme, custom rounded corners, star rating badges, and responsive layout scaling
-- [x] Progress indicator showing loading state while fetching API data
+- [x] Custom dark-mode Material UI styling with rating badges (`⭐ 8.5 / 10`) and vote counts
+- [x] Progress bar loading indicator during API network calls
+- [x] Landscape and portrait responsive poster/backdrop dimensions
 
 ## Video Walkthrough
 
@@ -42,20 +45,10 @@ GIF created with ScreenToGif
 [ScreenToGif](https://www.screentogif.com/) for Windows
 [peek](https://github.com/phw/peek) for Linux. -->
 
-## Code Snippet: Glide Placeholder Implementation
-
-```kotlin
-Glide.with(context)
-    .load(imageUrl)
-    .placeholder(R.drawable.placeholder)
-    .error(R.drawable.placeholder)
-    .into(ivPoster)
-```
-
 ## Notes
 
-- Handled screen orientation changes dynamically, switching between movie poster images in portrait mode and backdrop images in landscape mode.
-- Used OkHttp and JSONObject to parse TMDB API's JSON response and bind data cleanly using RecyclerView.Adapter.
+- Handled Intent parameter passing between `MainActivity` and `DetailActivity` cleanly using `Serializable` movie objects.
+- Integrated multiple TMDB API endpoints (`/movie/popular` and `/movie/top_rated`) seamlessly in a single interactive UI.
 
 ## License
 

@@ -1,6 +1,7 @@
 package com.example.flixster
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import java.util.Locale
+
+const val MOVIE_EXTRA = "MOVIE_EXTRA"
 
 class MovieAdapter(
     private val context: Context,
@@ -47,7 +52,6 @@ class MovieAdapter(
                 movie.posterImageUrl
             }
 
-            // Adjust image view dimensions for landscape vs portrait
             val layoutParams = ivPoster.layoutParams
             if (isLandscape) {
                 layoutParams.width = (180 * context.resources.displayMetrics.density).toInt()
@@ -58,12 +62,20 @@ class MovieAdapter(
             }
             ivPoster.layoutParams = layoutParams
 
-            // Glide image loading with placeholder
+            val radiusInPx = (16 * context.resources.displayMetrics.density).toInt()
             Glide.with(context)
                 .load(imageUrl)
+                .transform(CenterCrop(), RoundedCorners(radiusInPx))
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.placeholder)
                 .into(ivPoster)
+
+            itemView.setOnClickListener {
+                val intent = Intent(context, DetailActivity::class.java).apply {
+                    putExtra(MOVIE_EXTRA, movie)
+                }
+                context.startActivity(intent)
+            }
         }
     }
 }
